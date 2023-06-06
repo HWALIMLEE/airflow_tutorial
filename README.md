@@ -56,3 +56,8 @@ make stop
 ```
 
 Check http://localhost:8080/
+
+```
+User: airflow
+Password: airflow
+```
