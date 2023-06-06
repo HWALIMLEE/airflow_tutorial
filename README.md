@@ -61,3 +61,19 @@ Check http://localhost:8080/
 User: airflow
 Password: airflow
 ```
+
+### DAG Creation BoilerPlate CLI
+```
+make create
+
+example
+? dag name  movie_etl
+? description  영화평점 데이터 etl 작업 dag
+? owner  hwalim
+? retries  3
+? retry delay minutes  1
+? start date (ex. 2023, 1, 1, 17, 30)  2023, 1, 1, 17, 30
+? schedule interval  @daily
+? catchup  False
+? tags  etl
+```

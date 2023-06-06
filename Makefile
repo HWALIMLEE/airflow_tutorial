@@ -7,3 +7,8 @@ start: # Docker compose 를 통해 Airflow 실행
 
 stop: # Docker compose 를 통해 실행한 Airflow 종료
 	$(AIRFLOW_CONFIG) docker-compose down
+
+
+.PHONY: create
+create:
+	@python dag_code_generator.py
