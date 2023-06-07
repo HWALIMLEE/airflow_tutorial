@@ -28,7 +28,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 - Install [Docker](https://www.docker.com/)
 - Install [Docker Compose](https://docs.docker.com/compose/install/)
-- Following the Airflow release from [Python Package Index](https://pypi.python.org/pypi/apache-airflow)
+- Following the Airflow release from [Python Package Index](https://airflow.apache.org/docs/apache-airflow/2.4.3/installation/installing-from-pypi.html)
 
 ### Supportability
 
