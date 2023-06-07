@@ -32,7 +32,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Supportability
 
-Docker Service with `make` cli
+**Docker Service with `make` cli**
 
 ```
 make init
