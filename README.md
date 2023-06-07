@@ -30,9 +30,9 @@ These instructions will get you a copy of the project up and running on your loc
 - Install [Docker Compose](https://docs.docker.com/compose/install/)
 - Following the Airflow release from [Python Package Index](https://pypi.python.org/pypi/apache-airflow)
 
-### Usage
+### Supportability
 
-Run the web service with docker
+Docker Service with `make` cli
 
 ```
 make init
@@ -62,7 +62,7 @@ User: airflow
 Password: airflow
 ```
 
-### DAG Creation BoilerPlate CLI
+**DAG Creation BoilerPlate CLI**
 ```
 make create
 
