@@ -22,7 +22,7 @@ def download_data_to_bigquery():
             logging.info("Reading ml-25m/ratings.csv from zip file")
             with zip_.open("ml-25m/ratings.csv") as file_:
                 ratings = pd.read_csv(file_)
-    return ratings
+
 
 
 def get_rating_average():
@@ -30,5 +30,5 @@ def get_rating_average():
     ...
 
 
-def send_report_mail():
+def send_mail():
     ...
