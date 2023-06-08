@@ -2,11 +2,10 @@ import os
 from datetime import timedelta, datetime
 import pendulum
 from airflow import DAG
-from airflow.decorators import task
+from airflow.operators.python import PythonOperator
 
-# os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = './config/bigquery_credentials.json'
-
-from movie_data import download_data_to_bigquery
+from src.movie_data import download_data_to_bigquery, get_count_over_4, delete_data
+# from airflow.providers.discord.operators.discord_webhook import DiscordWebhookOperator
 
 seoul_time = pendulum.timezone('Asia/Seoul')
 dag_name = os.path.basename(__file__).split('.')[0]
@@ -26,21 +25,24 @@ with DAG(
     catchup=False,
     tags=['etl']
 ) as dag:
-    # download_data = PythonOperator(
-    #     task_id='download_data_to_bigquery',
-    #     python_callable=download_data_to_bigquery
-    # )
-
-    # get_average = PythonOperator(
-    #     task_id='get_rating_average',
-    #     python_callable=get_rating_average
-    # )
+    download_data = PythonOperator(
+        task_id='download_data_to_bigquery',
+        python_callable=download_data_to_bigquery
+    )
+    get_count = PythonOperator(
+        task_id='get_count_over_4',
+        python_callable=get_count_over_4
+    )
+    delete = PythonOperator(
+        task_id='delete_data',
+        python_callable=delete_data
+    )
+    # send_result = DiscordWebhookOperator(
+    #     task_id='send_report',
+    #     webhook_endpoint='',
+    #     message='',
+    #     username='화림#9252',
     #
-    # mail = PythonOperator(
-    #     task_id='send_mail',
-    #     python_callable=send_mail
     # )
-    @task
-    def test():
-        print('test')
-    test()
+    download_data >> get_count >> delete
+
