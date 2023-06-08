@@ -33,10 +33,6 @@ with DAG(
         task_id='get_count_over_4',
         python_callable=get_count_over_4
     )
-    delete = PythonOperator(
-        task_id='delete_data',
-        python_callable=delete_data
-    )
     # send_result = DiscordWebhookOperator(
     #     task_id='send_report',
     #     webhook_endpoint='',
@@ -44,5 +40,5 @@ with DAG(
     #     username='화림#9252',
     #
     # )
-    download_data >> get_count >> delete
+    download_data >> get_count
 

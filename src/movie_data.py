@@ -53,8 +53,8 @@ def get_count_over_4() -> int:
               HAVING
                 avg_rating > 4)
             """
-    result = bq.client.query(query).result()
-    return next(result).count
+    count_result = bq.client.query(query).result()
+    return next(count_result).cnt
 
 
 def delete_data():
