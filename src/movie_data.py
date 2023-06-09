@@ -8,6 +8,18 @@ import zipfile
 from supports.bigquery import BigQuery
 
 
+def is_exists():
+    bq = BigQuery()
+    next_task = 'download_data_to_bigquery'
+    query = f"""
+            SELECT COUNT(*) AS cnt FROM `pseudolab-de4e-tutorial.de4e.movie_data` 
+            """
+    result = bq.client.query(query).result()
+    if next(result).cnt > 0:
+        next_task = 'get_movie_data'
+    return next_task
+
+
 def download_data_to_bigquery():
     """Fetches ratings from the given URL."""
 
@@ -25,13 +37,13 @@ def download_data_to_bigquery():
             logging.info("Reading ml-25m/ratings.csv from zip file")
             with zip_.open("ml-25m/ratings.csv") as file_:
                 ratings = pd.read_csv(file_)
-    bq.insert_data_to_bigquery(ratings, table_id='dauntless-sun-336715.de4e.movie_ratings')
+    bq.insert_data_to_bigquery(ratings, table_id='pseudolab-de4e-tutorial.de4e.movie_data')
 
 
 def load_data_from_bigquery():
     bq = BigQuery()
     query = f"""
-            SELECT * FROM `dauntless-sun-336715.de4e.movie_ratings` LIMIT 100
+            SELECT * FROM `pseudolab-de4e-tutorial.de4e.movie_data` LIMIT 100
             """
     result = bq.load_data_to_dataframe(query)
     return result
@@ -47,7 +59,7 @@ def get_count_over_4() -> int:
                 userId,
                 AVG(rating) AS avg_rating
               FROM
-                `dauntless-sun-336715.de4e.movie_ratings`
+                `pseudolab-de4e-tutorial.de4e.movie_data`
               GROUP BY
                 userId
               HAVING
@@ -57,9 +69,10 @@ def get_count_over_4() -> int:
     return next(count_result).cnt
 
 
-def delete_data():
+def delete_movie_data():
     bq = BigQuery()
     query = f"""
-            DELETE FROM `dauntless-sun-336715.de4e.movie_ratings`
+            DELETE FROM `pseudolab-de4e-tutorial.de4e.movie_data`
+            WHERE TRUE
             """
     bq.client.query(query).result()
