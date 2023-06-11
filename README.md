@@ -38,7 +38,7 @@ These instructions will get you a copy of the project up and running on your loc
 make init
 
 # Build the image
-# docker build . -t airflow:2.4.2
+# docker build . -t airflow:2.4.3
 ```
 
 ```
@@ -52,7 +52,7 @@ make start
 make stop
 
 # Docker compose down
-# docker-compose down
+# docker-compose down --volumes
 ```
 
 Check http://localhost:8080/
