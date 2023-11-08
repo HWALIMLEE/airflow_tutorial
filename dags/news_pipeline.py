@@ -17,8 +17,8 @@ default_args = {
 with DAG(
     dag_id=dag_name,
     default_args=default_args,
-    description='news dashboard 운영을 위해 10분마다 돌아가는 dag 입니다.',
-    schedule_interval='*/10 * * * *',
+    description='news dashboard 운영을 위해 25분마다 돌아가는 dag 입니다.',
+    schedule_interval='*/25 * * * *',
     start_date=datetime(2023, 1, 1, tzinfo=seoul_time),
     catchup=False,
     tags=['pseudo']
