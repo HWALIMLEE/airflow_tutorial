@@ -13,7 +13,7 @@ DEFAULT_ARGS = {
 }
 
 DIR_PATH=os.path.abspath(__file__)
-SCRIPT_PATH=f"{DIR_PATH}/../script/job_trend"
+SCRIPT_PATH=f"{DIR_PATH}/../src/job-trend/script"
 DATA_PATH=f"{DIR_PATH}/../data"
 
 
